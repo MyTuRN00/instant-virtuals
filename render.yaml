@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: instant-virtuals
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: instant-virtuals-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-5
+      - key: MAX_UPLOAD_MB
+        value: "8"
+      - key: DAILY_ANALYSIS_LIMIT
+        value: "10"
+      - key: DB_POOL_MAX
+        value: "10"
+      - key: APP_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+
+databases:
+  - name: instant-virtuals-db
+    plan: free
+    databaseName: instant_virtuals
+    user: instant_virtuals
