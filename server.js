@@ -196,7 +196,7 @@ app.post("/api/auth/register", authRate(5, 15 * 60 * 1000), async (req,res)=>{
     catch(e){ await pool.query("DELETE FROM users WHERE id=$1",[user.id]); throw e; }
     res.status(201).json({message:"Account created. Check your email to verify your account."});
   } catch(e) {
-    if(e.code==="23505") return res.status(409).json({error:"An account with that email already exists."});
+ if(e.code==="23505"){ console.error("DUPLICATE CONSTRAINT:",e.constraint,e.detail); return res.status(409).json({error:"An account with that email already exists."}); }
     console.error(e); res.status(500).json({error:"Could not create account."});
   }
 });
