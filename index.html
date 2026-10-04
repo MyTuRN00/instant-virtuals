@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instant Virtuals</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#"><i></i>Instant<span>Virtuals</span></a>
+  <div class="navlinks"><a href="#how">How it works</a><a href="#history">History</a></div>
+  <button id="authBtn" class="dark">Sign in</button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="pill">✦ AI FOOTBALL ANALYSIS</div>
+  <h1>Turn your virtuals<br><em>into smarter picks.</em></h1>
+  <p>Upload a screenshot of your virtual football fixtures and get a structured, AI-assisted analysis based only on the information visible in your image.</p>
+  <button class="primary" id="startBtn">GET STARTED <b>↗</b></button>
+  <small>Probabilistic analysis · No guaranteed outcomes</small>
+</section>
+
+<section class="stats"><div><b>AI</b><span>image analysis</span></div><div><b>24/7</b><span>availability</span></div><div><b>100%</b><span>user-controlled</span></div></section>
+
+<section class="workflow" id="how">
+  <label>SIMPLE PROCESS</label><h2>Four steps. One <em>smart workflow.</em></h2>
+  <div class="steps">
+    <article><small>01</small><strong>Open your virtuals</strong><p>Choose the fixture screen you want analyzed.</p></article>
+    <article><small>02</small><strong>Take a screenshot</strong><p>Capture the fixtures and markets clearly.</p></article>
+    <article><small>03</small><strong>Upload it here</strong><p>Your image is sent securely to the analysis service.</p></article>
+    <article><small>04</small><strong>Review your picks</strong><p>See selections, confidence and reasons.</p></article>
+  </div>
+</section>
+
+<section class="analyzer" id="analyzer">
+  <label>AI ANALYZER</label><h2>Analyze a screenshot</h2>
+  <p>Sign in first, then upload a clear PNG, JPG or WEBP screenshot.</p>
+  <div id="authNotice" class="notice">You need an account to analyze screenshots.</div>
+  <label class="drop" id="drop"><input type="file" id="file" accept="image/png,image/jpeg,image/webp"><div class="upload">↑</div><strong id="fileName">Choose screenshot</strong><span>PNG, JPG or WEBP · max 8 MB</span></label>
+  <button class="primary full" id="analyzeBtn" disabled>ANALYZE IMAGE <b>→</b></button>
+  <div id="result" class="result"></div>
+</section>
+
+<section class="history" id="history">
+  <label>YOUR ACCOUNT</label><h2>Analysis history</h2>
+  <div id="historyList" class="history-list"><div class="empty">Sign in to see your previous analyses.</div></div>
+</section>
+</main>
+
+<div class="modal hidden" id="modal">
+  <div class="modal-card"><button class="close" id="close">×</button><div class="pill">ACCOUNT</div><h2 id="modalTitle">Sign in</h2>
+    <form id="authForm"><input id="email" type="email" placeholder="Email address" required><input id="password" type="password" placeholder="Password (8+ characters)" minlength="8" required><button class="primary full" type="submit">CONTINUE</button></form>
+    <p id="authError"></p><button type="button" class="switch" id="forgot">Forgot password?</button><button type="button" class="switch" id="switch">Create an account</button><button type="button" class="switch hidden" id="resend">Resend verification email</button>
+  </div>
+</div>
+<footer>INSTANT VIRTUALS · AI-ASSISTED ANALYSIS · PREDICTIONS ARE NOT GUARANTEED</footer><div id="verifyPage" class="modal hidden"><div class="modal-card"><h2 id="verifyTitle">Account</h2><p id="verifyText"></p><button class="primary full" onclick="location.href='/'">CONTINUE</button></div></div>
+<script src="app.js"></script>
+</body>
+</html>
