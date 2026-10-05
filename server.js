@@ -174,7 +174,7 @@ async function rateLimit(key, limit, windowMs) {
   const row = r.rows[0];
   return { allowed: row.count <= limit, retryAfter: Math.max(1, Math.ceil((new Date(row.reset_at).getTime() - Date.now()) / 1000)) };
 }
-async function limitMiddleware(name, limit, windowMs) {
+function limitMiddleware(name, limit, windowMs) {
   return async (req, res, next) => {
     try {
       const identity = req.user?.sub || req.ip || "unknown";
