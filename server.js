@@ -184,11 +184,8 @@ async function limitMiddleware(name, limit, windowMs) {
     } catch { res.status(503).json({ error: "Rate limiter unavailable." }); }
   };
 }
-const authRate = (limit, ms) => (req, res, next) => { rateLimit(`ip:${req.ip}:${req.path}`, limit, ms).then(x => x.allowed ? next() : (res.set("Retry-After", String(x.retryAfter)), res.status(429).json({error:"Too many requests. Please try again later."}))).catch(()=>res.status(503).json({error:"Rate limiter unavailable."})); };
-
-  if (!smtp) throw new Error("SMTP is not configured.");
-  await smtp.sendMail({ from: FROM_EMAIL, to, subject, html });
-}
+const authRate = (limit, ms) => (req, res, next) =>
+  limitMiddleware("auth", limit, ms)(req, res, next);
 async function issueToken(userId, type, hours) {
   await pool.query("DELETE FROM auth_tokens WHERE user_id=$1 AND type=$2 AND (used_at IS NOT NULL OR expires_at < NOW())", [userId, type]);
   const raw = createToken();
