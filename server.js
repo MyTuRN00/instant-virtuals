@@ -37,7 +37,7 @@ const pool = new Pool({
 });
 
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
-const const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
 async function sendMail(to, subject, html) {
   if (!RESEND_API_KEY) {
